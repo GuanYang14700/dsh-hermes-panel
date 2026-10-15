@@ -1,0 +1,27 @@
+# Python leaves these next to the bridge script the first time it is imported.
+# `files` in package.json includes the whole `bridge` directory, so without this
+# they would ship in the tarball: compiled bytecode for one interpreter version,
+# which is both useless and a surprise.
+__pycache__/
+*.pyc
+
+# Test scaffolding.
+.verify-tmp/
+.npm-cache/
+node_modules/
+
+# The bridge's own journal, if a test or a manual run points it here.
+*.jsonl
+
+# Credentials. This package lives inside a private monorepo, but it is mirrored to
+# a public repository by scripts/mirror-to-github.mjs — which skips these names
+# too. Neither layer trusts the other to be the one that remembers.
+.npmrc
+.env
+.env.local
+*.pem
+*.key
+*.token
+
+# Packed tarballs.
+*.tgz
