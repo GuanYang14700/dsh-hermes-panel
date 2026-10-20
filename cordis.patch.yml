@@ -1,0 +1,18 @@
+# Bundle layer for the Hermes panel.
+#
+# The row carries NO config on purpose. Hermes locations are discovered at
+# runtime from the installation's own `official-web/.env` (HERMES_HOME, VENV,
+# HERMES_EXE, DASHBOARD_PORT), so this file must stay machine-independent: an
+# earlier revision pinned this author's `hermes.exe` and `HERMES_HOME` here,
+# which meant every other machine mounted a row pointing at paths that do not
+# exist.
+#
+# Anything that genuinely needs overriding belongs in the profile's own user
+# patch layer, or in the settings form this plugin's `Config` schema feeds —
+# which the client half contributes through the Plugins page's three slots: a
+# card beside the official bundles (`plugins.item`), the form on this bundle's
+# own detail page (`plugins.bundle.config`), and the form on its row page
+# (`plugins.row.config`, keyed `bundle#rowId`).
+- insert:
+    - id: hermes-panel
+      name: '@yang3333/dsh-hermes-panel'
