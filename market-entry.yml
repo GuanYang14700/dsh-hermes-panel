@@ -1,0 +1,19 @@
+# The entry submitted to the DSH plugin market.
+#
+# One file is the whole submission: this is a copy of
+# `data/plugins/GuanYang14700__dsh-hermes-panel.yml` in
+# https://github.com/awesome-dsh-plugin/awesome-dsh-plugin, kept here so that the
+# line a stranger reads before any README cannot drift from the package it
+# describes. `verify/package.mjs` asserts the two agree — the market treats the
+# description as a claim about the code and a maintainer checks it against the
+# repository, so a stale line here would be the thing that gets the entry bounced.
+#
+# `url` points at the public mirror of this package, not at the monorepo it is
+# developed in: the market enumerates the repository it is given, and the
+# monorepo is private.
+url: https://github.com/GuanYang14700/dsh-hermes-panel
+name: GuanYang14700/dsh-hermes-panel
+category: ui
+description:
+  en: 'Hermes in the DSH sidebar: start and stop the gateway and dashboard, watch the dashboard beside the chat, and bridge DSH to Hermes.'
+  zh: '把 Hermes 放进 DSH 右侧栏：启停网关和 dashboard，聊天旁边就能看 dashboard，再把 DSH 和 Hermes 接起来。'

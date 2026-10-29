@@ -1,0 +1,34 @@
+name: hermetic suite
+
+# The package's own suite, from the repository ROOT.
+#
+# GitHub only reads `.github/workflows` at the root of a repository, so inside the
+# monorepo this plugin is developed in, its workflow lives at the monorepo root
+# instead. Here — the published package's own public mirror — this is that root.
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+        node: ["20", "22"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      # One devDependency, and it is not optional: the Host half builds its config
+      # schema with Schemastery, which normally comes from the installed harness.
+      # A bare checkout has neither, so the schema checks would have nothing to
+      # check and would report SKIP. Installing it here is what makes them real.
+      - name: Install the schema factory
+        run: npm install --no-audit --no-fund
+      - name: Run the hermetic suite
+        run: npm test

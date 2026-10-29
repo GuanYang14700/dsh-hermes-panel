@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Hermes Panel",
+    "description": "Runs your native Hermes agent from the DSH sidebar: automatic discovery, a health check, version upgrade and guided install, a two-way MCP bridge between DSH and Hermes, and a shared workspace both agents work in."
+  }
+}

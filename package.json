@@ -1,0 +1,81 @@
+{
+  "name": "@yang3333/dsh-hermes-panel",
+  "version": "1.1.0-rc.6",
+  "type": "module",
+  "description": "Hermes in the DSH sidebar: start and stop the gateway and dashboard, watch the dashboard beside the chat, and bridge DSH to Hermes.",
+  "license": "MIT",
+  "author": "GuanYang14700",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "hermes",
+    "hermes-agent",
+    "sidebar",
+    "panel"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuanYang14700/dsh-hermes-panel.git"
+  },
+  "homepage": "https://github.com/GuanYang14700/dsh-hermes-panel#readme",
+  "bugs": {
+    "url": "https://github.com/GuanYang14700/dsh-hermes-panel/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "icon": "./icon.png",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "icon.png",
+    "bridge/*.py",
+    "locale/*.json",
+    "scripts",
+    "verify",
+    "README.md",
+    "README.zh.md",
+    "CHANGELOG.md",
+    "PUBLISHING.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node verify/smoke.mjs && node verify/client.mjs && node verify/styles.mjs && node verify/host-csrf.mjs && node verify/config.mjs && node verify/concurrency.mjs && node verify/health.mjs && node verify/update.mjs && node verify/bridge.mjs && node verify/bridge-render.mjs && node verify/bridge-server.mjs && node verify/gateway-status.mjs && node verify/workspace-records.mjs && node verify/upstream.mjs && node verify/market-entry.mjs && node verify/package.mjs",
+    "test:e2e": "node verify/health-e2e.mjs && node verify/host.mjs && node verify/stop-foreign.mjs && node verify/stop-gateway.mjs",
+    "verify": "npm test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh": ">=0.2.0-rc.2 <0.3.0 || >=0.3.0-rc.1 <0.4.0 || >=0.4.0-rc.1 <0.5.0 || >=0.5.0-rc.1 <0.6.0 || >=0.6.0-rc.1 <0.7.0 || >=0.7.0-rc.1 <0.8.0 || >=0.8.0-rc.1 <0.9.0 || >=0.9.0-rc.1 <1.0.0-0"
+  },
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-primitives",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ]
+    }
+  },
+  "devDependencies": {
+    "@deepseek-ai/schemastery": "^3.18.4"
+  }
+}
